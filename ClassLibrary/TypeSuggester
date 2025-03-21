@@ -1,0 +1,12 @@
+using System;
+
+namespace ClassLibrary;
+
+public class TypeSuggester
+{
+    public List<List<string>> Suggest(List<string> repository, string value)
+    {
+        var result = new List<List<string>>();
+        return result;
+    }
+}
