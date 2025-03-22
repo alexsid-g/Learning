@@ -61,4 +61,21 @@ public class FifteenSolvingPatternsFacts
         Assert.Equal(12, max);
     }
 
+    [Fact]
+    public void P4_FastSlowPointer_Should_Work()
+    {
+        var withoutLoop = P4_FastSlowPointer.CreateList(3);
+
+        var withLoop = P4_FastSlowPointer.CreateList(3);
+        withLoop.Next.Next.Next = withLoop;
+
+        
+        var service = new P4_FastSlowPointer();
+        Assert.False(service.HasCycle(withoutLoop));
+        Assert.False(service.HasCycleByHash(withoutLoop));
+
+        Assert.True(service.HasCycle(withLoop));
+        Assert.True(service.HasCycleByHash(withLoop));
+    }
+
 }
