@@ -10,12 +10,8 @@ namespace ClassLibrary.FifteenPatterns;
 public class P2_TwoPointers
 {
     /// <summary>
-    /// 
+    /// Find pairs in array based on condition by predicate.
     /// </summary>
-    /// <typeparam name="T">Any type</typeparam>
-    /// <param name="array"></param>
-    /// <param name="predicate"></param>
-    /// <returns></returns>
     public List<(T, T)> Find<T>(IEnumerable<T> array, Func<T, T, int> predicate)
     {
         var result = new List<(T, T)>();

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ClassLibrary.FifteenPatterns;
 
 namespace ClassLibrary.Tests;
@@ -23,6 +24,7 @@ public class FifteenSolvingPatternsFacts
     {
         int[] array = [2, 1, 3, 5, 4];
 
+        // Find numbers which sum eq 6
         var predicate = new Func<int, int, int>((x, y) => {
             var result = x + y;
             return result > 6
@@ -33,6 +35,30 @@ public class FifteenSolvingPatternsFacts
         var service = new P2_TwoPointers();
         var result = service.Find(array, predicate);
         Assert.Equal([(1, 5), (2, 4)], result);
+    }
+
+    [Fact]
+    public void P3_SlidingWindow_Should_Work()
+    {
+        int[] array = [2, 1, 3, 5, 4, 1];
+
+        // Find max sum of subarray(3)
+        var max = 0;
+        var result = 0;
+        var start = new Action<IEnumerable<int>>(x =>
+        {
+            result = x.Sum();
+        });
+
+        var move = new Action<int, int>((xIn, xOut) => {
+            result = result + xIn - xOut;
+            if (result > max) max = result;
+        });
+
+        var service = new P3_SlidingWindow();
+        service.Process(array, 3, start, move);
+
+        Assert.Equal(12, max);
     }
 
 }
