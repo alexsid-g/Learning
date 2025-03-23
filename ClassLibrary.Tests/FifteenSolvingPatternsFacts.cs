@@ -20,7 +20,7 @@ public class FifteenSolvingPatternsFacts
     }
 
     [Fact]
-    public void P2_TwoPointers_Should_Work()
+    public void P2_TwoPointers_FindPairs_Should_Work()
     {
         int[] array = [2, 1, 3, 5, 4];
 
@@ -33,8 +33,29 @@ public class FifteenSolvingPatternsFacts
         });
 
         var service = new P2_TwoPointers();
-        var result = service.Find(array, predicate);
+        var result = service.FindPairs(array, predicate);
         Assert.Equal([(1, 5), (2, 4)], result);
+    }
+
+     [Fact]
+    public void P2_TwoPointers_IsPalyndrome_Should_Work()
+    {
+        string[] array = ["ab", "1wer-rew1", "abcdeba", "a", "444-444-444"];
+        bool[] expected = [false, true, false, false, true];
+
+        // Find numbers which sum eq 6
+        var predicate = new Func<int, int, int>((x, y) => {
+            var result = x + y;
+            return result > 6
+                ? 1 : result < 6
+                ? -1 : 0;
+        });
+
+        var service = new P2_TwoPointers();
+        var result = array
+            .Select(x => service.IsPalyndrome(x))
+            .ToList();
+        Assert.Equal(expected, result);
     }
 
     [Fact]
@@ -76,6 +97,19 @@ public class FifteenSolvingPatternsFacts
 
         Assert.True(service.HasCycle(withLoop));
         Assert.True(service.HasCycleByHash(withLoop));
+    }
+
+    [Fact]
+    public void P5_MonotonicStack_Should_Work()
+    {
+        int[] array = [1, 4, 6, 8, 3, 2, 7];
+        
+        var service = new P5_MonotonicStack();
+        var result1 = service.Find(array);
+        Assert.Equal([1, 2, 3, -1, 6, 6, -1], result1);
+
+        var result2 = service.FindEx(array);
+        Assert.Equal([1, 2, 3, -1, 6, 6, -1], result2); 
     }
 
 }

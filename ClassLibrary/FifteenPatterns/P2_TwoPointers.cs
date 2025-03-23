@@ -12,7 +12,7 @@ public class P2_TwoPointers
     /// <summary>
     /// Find pairs in array based on condition by predicate.
     /// </summary>
-    public List<(T, T)> Find<T>(IEnumerable<T> array, Func<T, T, int> predicate)
+    public List<(T, T)> FindPairs<T>(IEnumerable<T> array, Func<T, T, int> predicate)
     {
         var result = new List<(T, T)>();
         var sortedArray = array.Order().ToList();
@@ -34,5 +34,21 @@ public class P2_TwoPointers
         }
 
         return result;
+    }
+
+    public bool IsPalyndrome(string input)
+    {
+        if (input.Length == 1) return true;
+        else if (input.Length <= 3) return input[0] == input[input.Length-1];
+        
+        var left = 0;
+        var right = input.Length-1;
+        while (left < right)
+        {
+            if (input[left] != input[right]) return false;
+            left++;
+            right++;
+        }
+        return true;
     }
 }

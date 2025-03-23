@@ -53,7 +53,7 @@ public class P4_FastSlowPointer
         public ListNode<T>? Next {get; set;}
     }
 
-    public static ListNode<int> CreateList(int n)
+    public static ListNode<int>? CreateList(int n)
     {
         ListNode<int>? ptr = null;
         ListNode<int>? result = null; 

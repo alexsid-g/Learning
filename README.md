@@ -7,6 +7,7 @@ Added 15 algorithms patterns:
 2. Two pointers (from both ends)
 3. Sliding window (move it using in and out values)
 4. Fast-slow pointers to find cycles
+5. Monotonic stack (find next )
    ... more comming ...
 
 ## There are 3 projects:
