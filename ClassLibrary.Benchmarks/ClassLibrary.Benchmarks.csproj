@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Benchmarks/" />
+    <ProjectReference Include="../ClassLibrary/ClassLibrary.csproj" />
   </ItemGroup>
 
 </Project>

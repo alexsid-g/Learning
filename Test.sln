@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -7,15 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary.Tests", "ClassLibrary.Tests\ClassLibrary.Tests.csproj", "{4087097D-B7E6-40F1-A4CA-415AFA96D819}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibruary.Benchmarks", "ClassLibruary.Benchmarks\ClassLibruary.Benchmarks.csproj", "{29BA4A1B-BCF7-46B5-83BE-4776B5C32775}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary.Benchmarks", "ClassLibrary.Benchmarks\ClassLibrary.Benchmarks.csproj", "{29BA4A1B-BCF7-46B5-83BE-4776B5C32775}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1E877D34-DF61-433D-94B8-FB99EB6DC3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +27,8 @@ Global
 		{29BA4A1B-BCF7-46B5-83BE-4776B5C32775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29BA4A1B-BCF7-46B5-83BE-4776B5C32775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29BA4A1B-BCF7-46B5-83BE-4776B5C32775}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

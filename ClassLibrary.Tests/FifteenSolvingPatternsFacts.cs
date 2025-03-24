@@ -112,4 +112,17 @@ public class FifteenSolvingPatternsFacts
         Assert.Equal([1, 2, 3, -1, 6, 6, -1], result2); 
     }
 
+    [Fact]
+    public void P6_TopValues_Should_Work()
+    {
+        int[] array = [1, 4, 1, 1, 3, 2, 1, 5, 7, 2, 1, 3, 3];
+        
+        var service = new P6_TopValues();
+        var result1 = service.FrequentByHeap(array, 3, true);
+        Assert.Equal([1, 3, 2], result1); 
+
+        var result2 = service.FrequentBySort(array, 3, true);
+        Assert.Equal([1, 3, 2], result2); 
+    }
+
 }
