@@ -36,10 +36,14 @@ public class P2_TwoPointers
         return result;
     }
 
+    /// <summary>
+    /// Check if input string is a polyndrome. 
+    /// </summary>
     public bool IsPalyndrome(string input)
     {
         if (input.Length == 1) return true;
-        else if (input.Length <= 3) return input[0] == input[input.Length-1];
+        else if (input.Length <= 3) 
+            return input[0] == input[input.Length-1];
         
         var left = 0;
         var right = input.Length-1;
@@ -47,7 +51,7 @@ public class P2_TwoPointers
         {
             if (input[left] != input[right]) return false;
             left++;
-            right++;
+            right--;
         }
         return true;
     }

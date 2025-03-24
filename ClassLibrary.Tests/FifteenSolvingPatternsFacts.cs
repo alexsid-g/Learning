@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Numerics;
 using ClassLibrary.FifteenPatterns;
 
 namespace ClassLibrary.Tests;
@@ -41,7 +42,7 @@ public class FifteenSolvingPatternsFacts
     public void P2_TwoPointers_IsPalyndrome_Should_Work()
     {
         string[] array = ["ab", "1wer-rew1", "abcdeba", "a", "444-444-444"];
-        bool[] expected = [false, true, false, false, true];
+        bool[] expected = [false, true, false, true, true];
 
         // Find numbers which sum eq 6
         var predicate = new Func<int, int, int>((x, y) => {
@@ -55,6 +56,7 @@ public class FifteenSolvingPatternsFacts
         var result = array
             .Select(x => service.IsPalyndrome(x))
             .ToList();
+
         Assert.Equal(expected, result);
     }
 
@@ -123,6 +125,16 @@ public class FifteenSolvingPatternsFacts
 
         var result2 = service.FrequentBySort(array, 3, true);
         Assert.Equal([1, 3, 2], result2); 
+    }
+
+    [Fact]
+    public void P7_OverlappedIntervals_Should_Work()
+    {
+        List<(int, int)> array = [(1,3), (3, 5), (3, 4), (5, 8), (6, 7), (7, 8), (8, 12)];
+        
+        var service = new P7_OverlappedIntervals();
+        var result = service.MergeOverlapped(array);
+        Assert.Equal([(1, 3), (3, 5), (5, 8), (8, 12)], result); 
     }
 
 }

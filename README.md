@@ -9,6 +9,7 @@ Added 15 algorithms patterns:
 4. Fast-slow pointers to find cycles
 5. Monotonic stack (find next largest/smalles value)
 6. Top K values (find largest/smallest/frequent)
+7. Merge overlapped (merges overlapped slots)
    ... more comming ...
 
 ## There are 3 projects:
