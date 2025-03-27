@@ -1,0 +1,129 @@
+Start
+Get number X
+If X less than zero Then 
+Print “negative”
+Otherwise X grater than zero Then
+Print “positive”
+Otherwise
+Print “zero”
+End
+—————————————
+Start 
+Get age
+If age Grater than 65 OR equals 65 Then
+Print “Eligible for senior discount”
+Else
+Print “Not eligible for senior discount”
+End
+———————————
+
+Decompose the development of a fitness tracking app that can track users' workouts, monitor their diet, and provide health insights.
+Instructions:
+	1	Define the main goal of the application.
+	⁃	Have fitness tracking app to help user keep his phisical form.
+	2	Use the top-down approach to break down the app into its major features.
+	⁃	Track workouts
+	⁃	Monitor diet
+	⁃	Provide health insights
+	3	Further decompose each feature into smaller, manageable tasks.
+	⁃	Track workouts
+	⁃	Create workout plan
+	⁃	Control if user follow the plan (done, skipped)
+	⁃	Monitor diet
+	⁃	Create diet plan
+	⁃	Control if user follow the plan
+	⁃	Provide health insights
+	⁃	Create health insights knowledge base
+	⁃	Show tips about health, fitness, diet
+	⁃	Show statistics about progress based workout and diet
+	5	Identify opportunities for modularisation.
+	⁃	Module1: WorkoutService
+	⁃	Module2: DietService
+	⁃	Module3: HealthInsightService
+——————
+
+Decompose the creation of an online learning platform that supports course creation, user enrolment, content delivery, and progress tracking.
+Instructions:
+	1	Define the main goal of the platform.
+	⁃	Create learning platform (course creation, user enrolment, content delivery, and progress tracking).
+	2	Use the top-down approach to break down the platform into its major features.
+	⁃	Course management
+	⁃	User management
+	⁃	Content management
+	⁃	Progress tracking
+	3	Further decompose each feature into smaller, manageable tasks.
+	⁃	Course management
+	⁃	Creation, updating, deleting courses
+	⁃	Creation, updating , deleting lessons
+	⁃	Creation, updating , deleting exams (checks)
+	⁃	View available courses (filtering, searching)
+	⁃	User management
+	⁃	Registration
+	⁃	Enrolment to/out course
+	⁃	Content management
+	⁃	Manage videos
+	⁃	Manage presentations
+	⁃	Manage lectures
+	⁃	Progress tracking
+	⁃	Track progress
+	⁃	Send notifications
+	4	Identify opportunities for modularization.
+	⁃	Course Manager
+	⁃	User Manager
+	⁃	Content Manager
+	⁃	Progress Tracker
+—————————
+Decompose the development of a project management tool that includes task tracking, team collaboration, and reporting features. Decide which approach (top-down or bottom-up) is more suitable and explain why.
+	1.	Goal: have a tool that helps manage project (control tasks and human resources)
+	2.	Main components
+	⁃	Task board
+	⁃	Team Manager
+	⁃	Collaboration
+	⁃	Reporting
+	4.	Here’s used top-down approach because problem is well known and requirements are clear.
+
+————————
+Decompose the creation of an online health monitoring system that tracks physical activity, sleep, and heart rate. Decide which approach (top-down or bottom-up) is more suitable and explain why.
+	1.	Main components
+	⁃	Activity Tracker
+	⁃	Sleep Tracker
+	⁃	Hart rate tracker
+	2.	Use here bottom-up approach because we does not understand requierments (who is the user, which functions should be included).
+———————
+	1	Define the problem clearly.
+	⁃	Calulate total mark based on  marks from Math, Science and English
+	2	Identify the key processes involved in solving the problem.
+	⁃	Get mark for Math, Science, English
+	⁃	Calculate total as a sum of marks
+	⁃	Print text “Total is: X”
+	3	Write pseudocode based on the identified processes.
+	⁃	Get mark for Math
+	⁃	Get mark for Science
+	⁃	Get mark for English
+	⁃	Calc total = Math + Science + English
+	⁃	Print “Total is {total}”
+———————
+	1	Define the problem clearly.
+	⁃	Take name of user and greets him “Hello Name”
+	2	Identify the key processes involved in solving the problem.
+	⁃	Get user name
+	⁃	Greets user “Hello {name}”
+	3	Write pseudocode based on the identified processes.
+	⁃	Get user name
+	⁃	Print “Hello, {name}!”
+———————————
+
+	1	Define the problem clearly.
+	⁃	Get products from different markets (smoked ribs, potato, smoked salmon, white bread)
+	2	Identify the key processes involved in solving the problem.
+	⁃	Get potato
+	⁃	Get smoked ribs
+	⁃	Get smoked salmon
+	⁃	Get white bread
+	3	Write pseudocode based on the identified processes.
+	⁃	Goto Frat and get smoked ribs
+	⁃	Goto Zabka and get white bread
+	⁃	Got to home and leave products there
+	⁃	Goto Hala Mirowska and get potato/smoked salmon
+	⁃	Return back home
+———————————

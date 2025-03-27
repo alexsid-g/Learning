@@ -92,7 +92,7 @@ public class FifteenSolvingPatternsFacts
         var withLoop = P4_FastSlowPointer.CreateList(3);
         withLoop.Next.Next.Next = withLoop;
 
-        
+
         var service = new P4_FastSlowPointer();
         Assert.False(service.HasCycle(withoutLoop));
         Assert.False(service.HasCycleByHash(withoutLoop));

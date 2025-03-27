@@ -1,0 +1,28 @@
+Problem 1: Discount Eligibility
+Scenario: You are tasked with creating a program to determine if a customer is eligible for a discount. 
+The program should check the total amount a customer has spent and decide if they qualify for a discount.
+
+SET totalAmount = GetTotalAmount
+IF totalAmount >= $100 THEN print "10% discount applied."
+ELSE print "No discount"
+Instructions:
+
+Problem 2: Book Categorization
+Scenario: A library needs to categorize books based on their genre. You need to develop a program that
+helps categorize each book correctly.
+
+SET genre = InputGenre
+IF genre is "Fiction," THEN print "Category: Fiction."
+OTHERWISE IF genre is "Non-Fiction," print "Category: Non-Fiction."
+OTHERWISE IF genre is "Science Fiction," print "Category: Science Fiction."
+OTHERWISE print "Category: Unknown."
+
+Problem 3: Even or Odd Number
+Scenario: You need to create a program that determines whether a given number is even or odd.
+
+SET number = InputNumber
+IF number is even, print "Even number."
+ELSE print "Odd number."
+-------------------------------
+double productPrice = 49.99;
+bool isAdmin = true;
