@@ -3,7 +3,7 @@ using System.Reflection.PortableExecutable;
 
 namespace ClassLibrary.MsBackendDeveloper;
 
-public static class Practice1
+public static class Practice3
 {
 /*
 Start
@@ -35,12 +35,12 @@ Print vowelCount
 End */
     public static void CalculateVowels()
     {
-        var chars = "Laid ioqw diolakdj lkanf bkjas";
-        char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+       var chars = "Laid ioqw diolakdj lkanf bkjas";
+        var vowels = "aeiou";
 
         var vowelCount = 0;
         foreach (var x in chars)
-            if (chars.Contains(x))
+            if (vowels.Contains(x))
                 vowelCount += 1;
 
         Console.WriteLine(vowelCount);

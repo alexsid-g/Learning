@@ -13,6 +13,10 @@ Added 15 algorithms patterns:
 7. Merge overlapped (merges overlapped slots)
    ... more comming ...
 
+## Documents
+Contains materials, labs and practice from MS Backend developer course.
+You can check code in Dot Net Fidler: https://dotnetfiddle.net/Widget/CsConsCore
+
 ## There are 4 projects:
 - ClassLibrary (contains a class library)
 - ClassLibrary.Tests (contains xUnit tests)
