@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 using ClassLibrary.FifteenPatterns;
+using ClassLibrary.Models;
 
 namespace ClassLibrary.Tests;
 
@@ -135,6 +136,44 @@ public class FifteenSolvingPatternsFacts
         var service = new P7_OverlappedIntervals();
         var result = service.MergeOverlapped(array);
         Assert.Equal([(1, 3), (3, 5), (5, 8), (8, 12)], result); 
+    }
+
+    [Fact]
+    public void P8_DeepFirstSearch_Should_Work()
+    {
+        // https://en.wikipedia.org/wiki/File:Sorted_binary_tree_ALL_RGB.svg
+        int[] values = [6, 2, 1, 4, 3, 5, 7, 8, 9];
+        
+        var tree = new BinaryTree<int>();
+        foreach (var i in values)
+            tree.Add(i);
+        
+        var service = new P8_DeepFirstSearch();
+        var resultPre = service.VisitPreOrder(tree);
+        Assert.Equal([6, 2, 1, 4, 3, 5, 7, 8, 9], resultPre); 
+
+        var resultPreItr = service.VisitPreOrderIterative(tree);
+        Assert.Equal([6, 2, 1, 4, 3, 5, 7, 8, 9], resultPre); 
+
+        var resultIn = service.VisitInOrder(tree);
+        Assert.Equal([1, 2, 3, 4, 5, 6, 7, 8, 9], resultIn); 
+
+        var resultPost = service.VisitPostOrder(tree);
+        Assert.Equal([1, 3, 5, 4, 2, 9, 8, 7 ,6], resultPost);
+    }
+
+    [Fact]
+    public void P9_DeepFirstSearch_Should_Work()
+    {
+        int[] values = [6, 2, 1, 4, 3, 5, 7, 8, 9];
+        
+        var tree = new BinaryTree<int>();
+        foreach (var i in values)
+            tree.Add(i);
+        
+        var service = new P9_BreadthFirstSearch();
+        var resultPre = service.Visit(tree);
+        Assert.Equal([6, 2, 7, 1, 4, 8, 3, 5, 9], resultPre);
     }
 
 }

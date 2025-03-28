@@ -35,7 +35,7 @@ public static class Lab4
     {
         Console.WriteLine("Enter your travel modes: Bus, Train or Flight: ");
 
-        string mode = Console.ReadLine();
+        string mode = Console.ReadLine() ?? "";
         switch (mode)
         {
             case "Bus": 
