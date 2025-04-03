@@ -74,7 +74,7 @@ public class P8_DeepFirstSearch
         stack.Push(tree.Root);
         while (stack.TryPop(out var item))
         {
-            
+            // TODO: implement
         }
         return result;
     }
@@ -108,7 +108,7 @@ public class P8_DeepFirstSearch
         stack.Push(tree.Root);
         while (stack.Any())
         {
-
+            // TODO: implement
         }
         return result;
     }
