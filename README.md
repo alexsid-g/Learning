@@ -11,6 +11,9 @@ Added 15 algorithms patterns:
 5. Monotonic stack (find next largest/smalles value)
 6. Top K values (find largest/smallest/frequent)
 7. Merge overlapped (merges overlapped slots)
+8. Deep first search (pre, in, post order traversal)
+9. Breadth first search (using queue)
+10. Matrix traversal (using recursive algorithm)
    ... more comming ...
 
 ## Documents

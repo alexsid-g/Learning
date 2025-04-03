@@ -176,4 +176,23 @@ public class FifteenSolvingPatternsFacts
         Assert.Equal([6, 2, 7, 1, 4, 8, 3, 5, 9], resultPre);
     }
 
+    [Fact]
+    public void P10_DeepFirstSearch_Should_Work()
+    {
+        int[][] matrix = [
+            [1, 1, 0],
+            [1, 3, 3],
+            [1, 0, 1],
+        ];
+    
+        
+        var service = new P10_MatrixTraversal();
+        service.FluidFill(matrix, 0, 1, 2);
+        Assert.Equal([
+            [2, 2, 0],
+            [2, 3, 3],
+            [2, 0, 1],
+        ], matrix);
+    }
+
 }
