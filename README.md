@@ -13,7 +13,8 @@ Added 15 algorithms patterns:
 7. Merge overlapped (merges overlapped slots)
 8. Deep first search (pre, in, post order traversal)
 9. Breadth first search (using queue)
-10. Matrix traversal (using recursive algorithm)
+10. Matrix traversal (using recursive algorithm - fluid fill)
+11. Backtracking (permutatoins and subsets, includung full generations)
    ... more comming ...
 
 ## Documents

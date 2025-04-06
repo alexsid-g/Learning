@@ -184,7 +184,6 @@ public class FifteenSolvingPatternsFacts
             [1, 3, 3],
             [1, 0, 1],
         ];
-    
         
         var service = new P10_MatrixTraversal();
         service.FluidFill(matrix, 0, 1, 2);
@@ -193,6 +192,58 @@ public class FifteenSolvingPatternsFacts
             [2, 3, 3],
             [2, 0, 1],
         ], matrix);
+    }
+
+    [Fact]
+    public void P11_Backtracking_Permutations_Should_Work()
+    {
+        int[] initial = [1, 2, 3];
+        
+        var service = new P11_Backtracking();
+        var result = service.GetPermutations(initial);
+        Assert.Equal([
+            [1, 2, 3],
+            [1, 3, 2],
+            [2, 1, 3],
+            [2, 3, 1],
+            [3, 2, 1],
+            [3, 1, 2],
+        ], result);
+    }
+
+    [Fact]
+    public void P11_Backtracking_GetSubsets_Should_Work()
+    {
+        int[] initial = [1, 2, 3, 4];
+        
+        var service = new P11_Backtracking();
+        var result = service.GetSubsets(initial, 2);
+        Assert.Equal([
+            [1, 2], [1, 3], [1, 4],
+            [2, 3], [2, 4],
+            [3, 4]
+        ], result);
+
+        result = service.GetSubsets(initial, 3);
+        Assert.Equal([
+            [1, 2, 3], [1, 3, 4],
+            [2, 3, 4]
+        ], result);
+    }
+
+    [Fact]
+    public void P11_Backtracking_GetSubsetsFull_Should_Work()
+    {
+        int[] initial = [1, 2, 3, 4];
+        
+        var service = new P11_Backtracking();
+        var result = service.GetSubsetsFull(initial);
+        Assert.Equal([
+            [], [1],
+            [2], [1, 2],
+            [3], [1, 3], [2, 3], [1, 2, 3],
+            [4], [1, 4], [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]
+        ], result);
     }
 
 }
