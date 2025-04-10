@@ -288,4 +288,19 @@ public class FifteenSolvingPatternsFacts
         Assert.Equal(10, service.PathCountEx(4, 3));
     }
 
+    [Fact]
+    public void P13_SubstringSearch_Should_Work()
+    {
+        var text = "akhafs lkaafidlk ifaf oijef klafds flksdjf sdafijdsa jfds asjidfj ass!";
+        var service = new P13_SubstringSearch();
+        
+        Assert.Equal(45, service.Find(text, "afij"));
+        Assert.Equal(4, service.Find("asafab", "ab"));
+        //Assert.Equal(39, service.Find_KMP(text, "afij"));
+        //Assert.Equal(39, service.Find_BM(text, "afij"));
+
+        Assert.Equal(45, service.Find_RK(text, "afij"));
+        Assert.Equal(4, service.Find_RK("axafab", "ab"));
+    }
+
 }

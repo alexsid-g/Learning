@@ -16,7 +16,7 @@ Added 15 algorithms patterns:
 10. Matrix traversal (using recursive algorithm - fluid fill)
 11. Backtracking (permutatoins and subsets, includung full generations)
 12. Dynamic programming (fibonacci, stones, paths, knapsack)
-
+13. String search substring (trivial, KMP, BM. RK)
    ... more comming ...
 
 ## Documents
