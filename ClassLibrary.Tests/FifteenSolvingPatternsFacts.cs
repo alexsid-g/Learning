@@ -246,4 +246,46 @@ public class FifteenSolvingPatternsFacts
         ], result);
     }
 
+    [Fact]
+    public void P12_DynamicProgramming_Stones_Should_Work()
+    {
+        var service = new P12_DynamicProgramming();
+        Assert.Equal("Loose", service.Stones(4, 4));
+        Assert.Equal("Win", service.Stones(7, 5));
+        Assert.Equal("Win", service.Stones(17, 72));
+    }
+
+    [Fact]
+    public void P12_DynamicProgramming_Knapsack_Full_Should_Work()
+    {
+        int[] prices = [1, 2, 4, 6, 5, 3];
+        int[] weights = [1, 2, 1, 1, 5, 3];
+        
+        var service = new P12_DynamicProgramming();
+        var result1 = service.Knapsack_Full(3, weights, prices);
+        var result2 = service.Knapsack_Optimal(3, weights, prices);
+
+        Assert.Equal([0, 0, 1, 1, 1, 0], result1);
+        Assert.Equal([0, 0, 1, 1, 1, 0], result2);
+    }
+
+    [Fact]
+    public void P12_DynamicProgramming_Path_Should_Work()
+    {
+        // 1 4 10
+        // 1 3 6 10
+        // 1 2 3 4
+        // 1 1 1 1
+        var service = new P12_DynamicProgramming();
+
+        Assert.Equal(6, service.PathCount(3, 3));
+        Assert.Equal(6, service.PathCountEx(3, 3));
+
+        Assert.Equal(4, service.PathCount(2, 4));
+        Assert.Equal(4, service.PathCountEx(2, 4));
+
+        Assert.Equal(10, service.PathCount(4, 3));
+        Assert.Equal(10, service.PathCountEx(4, 3));
+    }
+
 }
