@@ -1,4 +1,4 @@
-namespace ClassLibrary.MsBackendDeveloper;
+namespace ClassLibrary.MsBackend.Basics;
 
 /// <summary>
 /// You will create a basic task manager program that stores and displays 

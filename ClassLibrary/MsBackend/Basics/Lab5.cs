@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace ClassLibrary.MsBackendDeveloper;
+namespace ClassLibrary.MsBackend.Basics;
 
 /// <summary>
 /// Create method named 'DisplaySimpleMessage' and call it.

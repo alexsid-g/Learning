@@ -30,7 +30,7 @@ public class WeatherForecast
         .WithOpenApi();
     }
     
-    record WeatherForecastData(DateOnly Date, int TemperatureC, string? Summary)
+    record WeatherForecastData(DateOnly Date, int TemperatureC, string Summary)
     {
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }

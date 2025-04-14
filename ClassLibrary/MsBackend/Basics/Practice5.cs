@@ -1,5 +1,5 @@
 using System.Linq;
-namespace ClassLibrary.MsBackendDeveloper;
+namespace ClassLibrary.MsBackend.Basics;
 
 public static class Practice5
 {

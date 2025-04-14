@@ -1,7 +1,7 @@
 using System;
 using System.Reflection.PortableExecutable;
 
-namespace ClassLibrary.MsBackendDeveloper;
+namespace ClassLibrary.MsBackend.Basics;
 
 public static class Practice3
 {

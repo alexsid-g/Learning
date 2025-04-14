@@ -4,8 +4,8 @@ namespace ClassLibrary.Models;
 
 public class BinaryTree<T> where T : IComparable<T>
 {
-    public TreeNode? _root = null;
-    public TreeNode? Root => _root;
+    public TreeNode _root = null;
+    public TreeNode Root => _root;
 
     public BinaryTree()
     {
@@ -31,8 +31,8 @@ public class BinaryTree<T> where T : IComparable<T>
     public class TreeNode(T value)
     {
         public T Value { get; set; } = value;
-        public TreeNode? Left { get; set; } = null;
-        public TreeNode? Right { get; set; } = null;
+        public TreeNode Left { get; set; } = null;
+        public TreeNode Right { get; set; } = null;
 
         public void Add(T value)
         {

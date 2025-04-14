@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+namespace ClassLibrary.MsBackend.Basics;
 
 /// <summary>
 /// To complete this challenge, you will need to create a console application where users can manage product stock. 

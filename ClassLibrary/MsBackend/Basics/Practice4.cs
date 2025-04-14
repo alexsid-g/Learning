@@ -1,4 +1,4 @@
-namespace ClassLibrary.MsBackendDeveloper;
+namespace ClassLibrary.MsBackend.Basics;
 
 public static class Practice4
 {
