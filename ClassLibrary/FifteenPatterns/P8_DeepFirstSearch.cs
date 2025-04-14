@@ -19,7 +19,7 @@ public class P8_DeepFirstSearch
         Visit(tree.Root, result);
         
         return result;
-        void Visit(BinaryTree<T>.TreeNode? node, List<T> values)
+        void Visit(BinaryTree<T>.TreeNode node, List<T> values)
         {
             if (node is null) return;
             values.Add(node.Value);
@@ -34,7 +34,7 @@ public class P8_DeepFirstSearch
         var result = new List<T>();
         if (tree.Root is null) return result;
 
-        var stack = new Stack<BinaryTree<T>.TreeNode?>();
+        var stack = new Stack<BinaryTree<T>.TreeNode>();
         stack.Push(tree.Root);
         while (stack.TryPop(out var item))
         {
@@ -55,7 +55,7 @@ public class P8_DeepFirstSearch
         Visit(tree.Root, result);
         
         return result;
-        void Visit(BinaryTree<T>.TreeNode? node, List<T> values)
+        void Visit(BinaryTree<T>.TreeNode node, List<T> values)
         {
             if (node is null) return;
 
@@ -70,7 +70,7 @@ public class P8_DeepFirstSearch
         var result = new List<T>();
         if (tree.Root is null) return result;
 
-        var stack = new Stack<BinaryTree<T>.TreeNode?>();
+        var stack = new Stack<BinaryTree<T>.TreeNode>();
         stack.Push(tree.Root);
         while (stack.TryPop(out var item))
         {
@@ -89,7 +89,7 @@ public class P8_DeepFirstSearch
         Visit(tree.Root, result);
         
         return result;
-        void Visit(BinaryTree<T>.TreeNode? node, List<T> values)
+        void Visit(BinaryTree<T>.TreeNode node, List<T> values)
         {
             if (node is null) return;
 

@@ -303,4 +303,18 @@ public class FifteenSolvingPatternsFacts
         Assert.Equal(4, service.Find_RK("axafab", "ab"));
     }
 
+    [Fact]
+    public void P14_PatternMatch_Should_Work()
+    {
+        var service = new P14_PatternMatch();
+        
+        /*Assert.True(service.IsMatch("ab", "*"));
+        Assert.True(service.IsMatch("aba", "a?a"));
+        Assert.True(service.IsMatch("abc", "abc"));
+        Assert.True(service.IsMatch("abasa", "ab*"));
+        Assert.True(service.IsMatch("acasab", "*a*b"));
+        Assert.False(service.IsMatch("acdcb", "a*c?b"));*/
+        Assert.True(service.IsMatch("abcabczzzde", "*abc???de*"));
+    }
+
 }

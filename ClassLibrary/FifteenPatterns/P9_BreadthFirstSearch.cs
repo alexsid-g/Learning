@@ -17,7 +17,7 @@ public class P9_BreadthFirstSearch
         var result = new List<T>();
         if (tree.Root is null) return result;
 
-        var queue = new Queue<BinaryTree<T>.TreeNode?>();
+        var queue = new Queue<BinaryTree<T>.TreeNode>();
         queue.Enqueue(tree.Root);
         
         while (queue.TryDequeue(out var item))

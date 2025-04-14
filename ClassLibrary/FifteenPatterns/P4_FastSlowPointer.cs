@@ -11,7 +11,7 @@ public class P4_FastSlowPointer
     /// <summary>
     /// Detects cycle (when fast reaches slow)
     /// </summary>
-    public bool HasCycle<T>(ListNode<T>? first)
+    public bool HasCycle<T>(ListNode<T> first)
     {
         var fast = first;
         var slow = first;
@@ -29,7 +29,7 @@ public class P4_FastSlowPointer
     /// <summary>
     /// Detects cycle using hash of visited items
     /// </summary>
-    public bool HasCycleByHash<T>(ListNode<T>? first)
+    public bool HasCycleByHash<T>(ListNode<T> first)
     {
         var hash = new HashSet<ListNode<T>>();
         while (first is not null)
@@ -50,13 +50,13 @@ public class P4_FastSlowPointer
     {
         public T Value { get; set; } = value;
 
-        public ListNode<T>? Next {get; set;}
+        public ListNode<T> Next {get; set;}
     }
 
-    public static ListNode<int>? CreateList(int n)
+    public static ListNode<int> CreateList(int n)
     {
-        ListNode<int>? ptr = null;
-        ListNode<int>? result = null; 
+        ListNode<int> ptr = null;
+        ListNode<int> result = null; 
 
         for (var i = 0; i < n; i++)
         {
