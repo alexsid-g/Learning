@@ -31,20 +31,21 @@ Editor + built-in Git support. Write, test, debug and deploy.
 Best organization practicies
 1. Modularization (Divide your code into logical modules or categories: features, layers)
 2. Separation of Concerns (Structure your project by separating different functionalities)
-|Lalyers\Features | users | photos | comments |
-|-----------------|------:|-------:|---------:|
-| data            |   1.1 |  2.1   | 3.1      |
-| intermidiate    |   1.2 |  2.2   | 3.2      |
-| display         |   1.3 |  2.3   | 3.3      |
 
-4. File naming
+| Layers\Features | users | photos | comments |
+|-----------------|-------|--------|----------|
+| data            | 1.1   | 2.1    | 3.1      |
+| intermediate    | 1.2   | 2.2    | 3.2      |
+| display         | 1.3   | 2.3    | 3.3      |
+
+3. File naming
     - Pascal case
     - Camel case
     - Naming conventions
-5. Refactoring
+4. Refactoring
     - Clean and organize code
     - Added efficiencies
     - Make maintenance easier
-6. Documentation
+5. Documentation
     - External README
     - Internal comments (everything, nothing, when necessary)
