@@ -30,13 +30,17 @@ Editor + built-in Git support. Write, test, debug and deploy.
 ## Organizing .NET Project
 Best organization practicies
 1. Modularization (Divide your code into logical modules or categories: features, layers)
-2. Separation of Concerns (Structure your project by separating different functionalities)--------------------------------------------
- Lalyers\Features | users | photos | comments
---------------------------------------------
-data              |   1.1 |  2.1   | 3.1
-interm            |   1.2 |  2.2   | 3.2
-display           |   1.3 |  2.3   | 3.3
---------------------------------------------
+2. Separation of Concerns (Structure your project by separating different functionalities)
+|-----------------|-------|--------|----------|
+|Lalyers\Features | users | photos | comments |
+|-----------------|-------|--------|----------|
+| data            |   1.1 |  2.1   | 3.1      |
+|-----------------|-------|--------|----------|
+| intermidiate    |   1.2 |  2.2   | 3.2      |
+|-----------------|-------|--------|----------|
+| display         |   1.3 |  2.3   | 3.3      |
+|-----------------|-------|--------|----------|
+
 3. File naming
     - Pascal case
     - Camel case
