@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 
 namespace ClassLibrary.FifteenPatterns;
@@ -42,9 +43,9 @@ public class P11_Backtracking
     }
 
     /// <summary>
-    /// Gets all subsets of given size from the array.
+    /// Gets subsets of given size from the array (DFS).
     /// </summary>
-    public List<List<T>> GetSubsets<T>(T[] array, int size)
+    public List<List<T>> GetSubsets_DFS<T>(T[] array, int size)
     {   
         // Find a subset of size from array [123] => [12][13][23]
         // [1234] => [12][13][14][23][24][34] => [123][134][234]
@@ -52,26 +53,59 @@ public class P11_Backtracking
         var result = new List<List<T>>();
         if (array.Length < size) return result;
 
-        var limit = array.Length - size + 1;
-        return Backtrack(result, array, 0);
+        Backtrack(result, array, 0, new List<T>(), size);
+        return result;
 
-        List<List<T>> Backtrack(List<List<T>> result, T[] array, int start)
+        void Backtrack(List<List<T>> result, T[] array, int start, List<T> current, int size)
         {   
-            if (start >= limit) return result;
-            for (var i = start; i < limit; i++)
+            if (current.Count == size)
             {
-                List<T> subset = [array[start]];
-                for (var j = 1; j < size; j++)
-                    subset.Add(array[i + j]);
-
-                result.Add(subset);
+                result.Add(new List<T>(current));
+                return;
             }
-            return Backtrack(result, array, start + 1);
+
+            for (var i=start; i < array.Length; i++)
+            {
+                current.Add(array[i]);
+                Backtrack(result, array, i + 1, current, size);
+                current.RemoveAt(current.Count - 1);
+            }
         }
     }
 
     /// <summary>
-    /// Gets all subsets of given size from the array.
+    /// Gets subsets of given size from the array (BFS).
+    /// </summary>
+    public List<List<T>> GetSubsets_BFS<T>(T[] array, int size) {
+        var result = new List<List<int>>();
+        var queue = new Queue<List<int>>();
+        queue.Enqueue(new());
+        
+        while (queue.Count > 0) 
+        {
+            var item = queue.Dequeue();
+            if (item.Count == size) {
+                result.Add(item);
+                continue;
+            }
+            
+            
+            var start = item.Count == 0 ? 0 : item.Last() + 1;
+            for (var i = start; i < array.Length; i++)
+            {
+                var subset = new List<int>(item);
+                subset.Add(i);
+                queue.Enqueue(subset);
+            }
+        }
+
+        return result
+            .Select(x => new List<T>(x.Select(xx => array[xx])))
+            .ToList();
+    }
+
+    /// <summary>
+    /// Gets all subsets from the array.
     /// </summary>
     public List<List<T>> GetSubsetsFull<T>(T[] array)
     {

@@ -212,21 +212,45 @@ public class FifteenSolvingPatternsFacts
     }
 
     [Fact]
-    public void P11_Backtracking_GetSubsets_Should_Work()
+    public void P11_Backtracking_GetSubsets_DFS_Should_Work()
     {
         int[] initial = [1, 2, 3, 4];
         
         var service = new P11_Backtracking();
-        var result = service.GetSubsets(initial, 2);
+        var result = service.GetSubsets_DFS(initial, 2);
+
         Assert.Equal([
             [1, 2], [1, 3], [1, 4],
             [2, 3], [2, 4],
             [3, 4]
         ], result);
 
-        result = service.GetSubsets(initial, 3);
+        result = service.GetSubsets_DFS(initial, 3);
+
         Assert.Equal([
-            [1, 2, 3], [1, 3, 4],
+            [1, 2, 3], [1, 2, 4], [1, 3, 4],
+            [2, 3, 4]
+        ], result);
+    }
+
+    [Fact]
+    public void P11_Backtracking_GetSubsets_BFS_Should_Work()
+    {
+        int[] initial = [1, 2, 3, 4];
+        
+        var service = new P11_Backtracking();
+        var result = service.GetSubsets_BFS(initial, 2);
+
+        Assert.Equal([
+            [1, 2], [1, 3], [1, 4],
+            [2, 3], [2, 4],
+            [3, 4]
+        ], result);
+
+        result = service.GetSubsets_BFS(initial, 3);
+
+        Assert.Equal([
+            [1, 2, 3], [1, 2, 4], [1, 3, 4],
             [2, 3, 4]
         ], result);
     }

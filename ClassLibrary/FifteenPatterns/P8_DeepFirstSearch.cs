@@ -65,20 +65,6 @@ public class P8_DeepFirstSearch
         }
     }
 
-    public List<T> VisitInOrderIterative<T>(BinaryTree<T> tree) where T : IComparable<T>
-    {
-        var result = new List<T>();
-        if (tree.Root is null) return result;
-
-        var stack = new Stack<BinaryTree<T>.TreeNode>();
-        stack.Push(tree.Root);
-        while (stack.TryPop(out var item))
-        {
-            // TODO: implement
-        }
-        return result;
-    }
-
     /// <summary>
     /// Post-order traversal (left, right, root). Visit when last time meet.
     /// Useful to get posfix record of binary expression tree
@@ -97,19 +83,5 @@ public class P8_DeepFirstSearch
             Visit(node.Right, values);
             values.Add(node.Value);
         }
-    }
-
-    public List<T> VisitPostOrderIterative<T>(BinaryTree<T> tree) where T : IComparable<T>
-    {
-        var result = new List<T>();
-        if (tree.Root is null) return result;
-
-        var stack = new Stack<BinaryTree<T>.TreeNode>();
-        stack.Push(tree.Root);
-        while (stack.Any())
-        {
-            // TODO: implement
-        }
-        return result;
     }
 }
