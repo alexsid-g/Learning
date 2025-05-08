@@ -105,6 +105,22 @@ public class P11_Backtracking
     }
 
     /// <summary>
+    /// Get subsets of 3 numbers
+    /// </summary>
+    public List<List<T>> GetSubsets3<T>(T[] array)
+    {
+        var result = new List<List<T>>();
+
+        for (var i = 0; i < array.Length-2; i++)
+            for (var j = i + 1; j < array.Length-1; j++)
+                for (var k = j + 1; k < array.Length; k++)
+                {
+                    result.Add([array[0], array[1], array[2]]);
+                }
+        return result;
+    }
+
+    /// <summary>
     /// Gets all subsets from the array.
     /// </summary>
     public List<List<T>> GetSubsetsFull<T>(T[] array)
