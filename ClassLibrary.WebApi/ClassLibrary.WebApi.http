@@ -1,6 +1,6 @@
-@ClassLibrary.WebApi_HostAddress = http://localhost:5186
+@HostAddress = http://localhost:5186
 
-GET {{ClassLibrary.WebApi_HostAddress}}/weatherforecast/
+GET {{HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
