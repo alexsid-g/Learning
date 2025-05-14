@@ -37,7 +37,7 @@ public class P6_TopValues
         {
             if (items.TryGetValue(item, out var x))
             {
-                items[item] = items[item] + 1;
+                items[item] = x + 1;
                 continue;
             }
             items.Add(item, 1);
