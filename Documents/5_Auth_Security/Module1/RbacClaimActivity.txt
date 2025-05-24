@@ -1,0 +1,191 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using RoleClaimApp;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddOpenApi();
+builder.Services.AddDbContext<AppDbContext>(
+    opts => opts.UseInMemoryDatabase("RoleClaims")
+);
+builder.Services
+    .AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.ConfigureApplicationCookie(x =>
+{
+    x.Cookie.Name = "AlexAuth";
+    x.Events.OnRedirectToLogin = context =>
+    {
+        context.Response.StatusCode = 401;
+        return Task.CompletedTask;
+    };
+
+    x.Events.OnRedirectToAccessDenied = context =>
+    {
+        context.Response.StatusCode = 403;
+        return Task.CompletedTask;
+    };
+});
+
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization(opts => 
+{
+    opts.AddPolicy("ClaimPolicy",
+        policy => policy.RequireClaim("Claim"));
+});
+builder.Services.AddControllers();
+
+var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+
+app.MapGet("/", () =>
+{
+    return Results.Ok("It works");
+})
+.WithName("Home");
+
+app.MapGet("/auth", () =>
+{
+    return Results.Ok("It works: auth");
+})
+.RequireAuthorization();
+
+app.MapGet("/auth-role", () =>
+{
+    return Results.Ok("It works: Auth Role");
+})
+.RequireAuthorization(x => x.RequireRole("Admin"));
+
+app.MapGet("/auth-claim", () =>
+{
+    return Results.Ok("It works: Auth Claim");
+})
+.RequireAuthorization(x => x.RequireClaim("Claim"));
+
+app.MapPost("/create-user", async (UserManager<IdentityUser> um) =>
+{
+    var user = await um.FindByEmailAsync("user@email.com");
+    if (user is null)
+        await um.CreateAsync(new IdentityUser {
+            UserName = "Name",
+            Email = "user@email.com"
+        });
+    return Results.Ok("User created");
+});
+
+app.MapPost("/create-role", async (RoleManager<IdentityRole> rm) =>
+{
+    var role = await rm.FindByNameAsync("Admin");
+    if (role is null)
+        await rm.CreateAsync(new IdentityRole("Admin"));
+    return Results.Ok("Role is created");
+});
+
+app.MapPost("/login", async (UserManager<IdentityUser> um, SignInManager<IdentityUser> sm) =>
+{
+    var user = await um.FindByEmailAsync("user@email.com");
+    if (user is null) 
+        return Results.NotFound("User not exists");
+    
+    await sm.SignInAsync(user, false);
+    return Results.Ok("Login success");
+});
+
+app.MapPost("/add-role", async (UserManager<IdentityUser> um) =>
+{
+    var user = await um.FindByEmailAsync("user@email.com");
+    if (user is null) 
+        return Results.NotFound("User not exists");
+
+    await um.AddToRoleAsync(user, "Admin");
+    return Results.Ok("Role is added");
+});
+
+app.MapPost("/add-claim", async (UserManager<IdentityUser> um) =>
+{
+    var user = await um.FindByEmailAsync("user@email.com");
+    if (user is null) 
+        return Results.NotFound("User not exists");
+
+    await um.AddClaimAsync(user, new Claim("Claim", "Value"));
+    
+    return Results.Ok("User created");
+});
+
+
+app.Run();
+/////////////////////////////////////////////////////////////////
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace RoleClaimApp.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UsersController : ControllerBase
+    {
+        public UsersController()
+        {
+
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(new List<object>() {
+                new { Name = "Name", Role = "Role"}
+            });
+        }
+
+        [Authorize]
+        [HttpGet("auth")]
+        public IActionResult GetAuth()
+        {
+            return Ok(new List<object>() {
+                new { Name = "Auth Name", Role = "Auth Role"}
+            });
+        }
+
+        [HttpGet("auth-m")]
+        public IActionResult GetAuthManual()
+        {
+            if (!User.Identity?.IsAuthenticated ?? false)
+                return Unauthorized();
+            if (!User.IsInRole("Admin"))
+                return Forbid();
+            return Ok(new List<object>() {
+                new { Name = "Auth Name", Role = "Auth Role"}
+            });
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("auth-role")]
+        public IActionResult GetAuthRole()
+        {
+            return Ok(new List<object>() {
+                new { Name = "Auth Name Role", Role = "Auth Role"}
+            });
+        }
+
+        [Authorize(Policy = "ClaimPolicy")]
+        [HttpGet("auth-claim")]
+        public IActionResult GetAuthClaim()
+        {
+            return Ok(new List<object>() {
+                new { Name = "Auth Name", Role = "Auth Role"}
+            });
+        }
+
+    }
+}
