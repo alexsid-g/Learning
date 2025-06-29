@@ -1,0 +1,21 @@
+A social media platform has the following API routes:
+-----------------------
+1. GET /users/{id}: Returns profile information for a specific user.
+2. POST /posts: Creates a new post.
+3. DELETE /posts/{id}: Deletes a specific post.
+
+## Auth  Role  Claims
+1   +    User  UserId
+2   +    User  
+3   +    User  UserId
+
+#######################################################
+An LMS has the following API routes:
+1. GET /courses: Lists all available courses.
+2. POST /assignments: Creates a new assignment.
+3. GET /grades/{id}: Returns grades for a specific student.
+
+## Auth  Role           Claims
+1   -    
+2   +    Teacher        CourseId
+3   +    User, Teacher  UserId, CourseId

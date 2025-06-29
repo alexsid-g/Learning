@@ -98,3 +98,26 @@ CB auth is security model where access determined by associated Claims
 Roles: Predefined and static; ideal for broad access definitions.
 Claims: Dynamic and user-specific, offering more granular and adaptable access management.
 NOTE: Default redirect is "/account/login"
+
+## Token-based authentication
+Token - small piece of data which serves as cred to verify user's identity and right access.
+1. JWT (json web tokens)
+2. Stateless suthetication (server does not require to maintain session data)
+3. Use a securing APIs
+
+How to implement:
+1. Login
+2. Issue a token
+3. API request
+4. Token validation
+5. Access granted
+
+## External Authetification Providers
+- Simplify login
+- Enhanced security
+- Increased trust
+
+Managing auth process:
+- OAuth 2.0 (auth protocol allowes to grant limited access to users through external provider)
+- OpenID Connect (Identity layer over OAuth2.0 to authenticate and provide Claims about user)
+

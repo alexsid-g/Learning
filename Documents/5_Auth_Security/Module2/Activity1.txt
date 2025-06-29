@@ -1,0 +1,20 @@
+LMS Role Design
+
+LSM: CRUD instructors, CRUD students, CRUD lesson, CRUD questionary, CRUD answers. 
+
+1. Admin
+    - Full access to mange everything
+2. Instructor
+    - Create, read, update, delete lessons
+    - Create, update, delete, read questionaries
+    - Grade assignments
+3. Students
+    - Read lessons
+    - Read questionaries
+    - Create, update, delete, read answers to questionaries
+
+Admin - full access.
+Instructor - CRUD lessons, CRUD questionaries, RU student answers.
+Student - R lessons, CRUD answers.
+--------------------------------------------------
+

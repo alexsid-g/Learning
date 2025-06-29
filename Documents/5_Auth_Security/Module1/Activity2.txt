@@ -1,0 +1,210 @@
+using Microsoft.AspNetCore.Authentication;
+
+namespace SimpleTokenApp;
+
+public class Program
+{  
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddSingleton<AuthManager>();
+        builder.Services.AddSingleton<TokenManager>();
+        builder.Services.AddSingleton<SecurityManager>();
+
+        builder.Services.AddAuthentication(Auth.SchemeName)
+            .AddScheme<Auth.Options, Auth.Handler>(Auth.SchemeName, opts =>
+            {
+            });
+
+        builder.Services.AddAuthorization(opts => 
+        {
+            opts.AddPolicy("ClaimPolicy",
+                policy => policy.RequireClaim("Claim"));
+        });
+
+        var app = builder.Build();
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapGet("/", () =>
+        {
+            return Results.Ok("Hello");
+        });
+
+        app.MapGet("/secure", () => 
+        {
+            return Results.Ok("Secured");
+        }).RequireAuthorization();
+
+        app.MapPost("/register", (NamePass u) =>
+        {
+            var am = app.Services.GetService<AuthManager>();
+            if (am?.Register(u.Username, u.Password) != true)
+                return Results.BadRequest();
+
+            return Results.Created();
+        });
+
+        app.MapPost("/login", (NamePass u) =>
+        {
+            var am = app.Services.GetService<AuthManager>();
+            if (am?.Login(u.Username, u.Password, out var token) != true)
+                return Results.NotFound($"User not found {u.Username}"); 
+
+            return Results.Ok($"Token: {token}");
+        });
+
+        app.Run();
+    }
+
+    public class NamePass
+    {
+        public string Username {get;set;} = string.Empty;
+        public string Password {get;set;} = string.Empty;
+    }
+}
+
+/////////////////////////////////////////////////////////
+/// Auth class contains logic for custom Authentification
+///
+public class Auth
+{
+    public const string SchemeName = "MyToken";
+    
+    public class Options : AuthenticationSchemeOptions
+    {
+
+    }
+
+    public class Handler : AuthenticationHandler<Options>
+    {
+        public Handler(
+            IOptionsMonitor<Options> options,
+            ILoggerFactory logger,
+            UrlEncoder encoder)
+            : base(options, logger, encoder)
+        {
+
+        }
+
+        protected override Task<AuthenticateResult> HandleAuthenticateAsync()
+        {
+            // 1. Extract token from Authorization header
+            if (!Request.Headers.ContainsKey("Authorization"))
+                return Task.FromResult(AuthenticateResult.Fail("Missing Authorization Header"));
+
+            var token = Request.Headers["Authorization"].ToString();
+            if (!token.StartsWith(SchemeName))
+                return Task.FromResult(AuthenticateResult.Fail("Invalid Scheme"));
+
+            token = token.Substring(SchemeName.Length).Trim();
+
+            // 2. Validate token with custom logic (e.g., DB, cache, etc.)
+            var sm = Request.HttpContext.RequestServices.GetService<SecurityManager>();
+            if (sm?.ValidateToken(token) != true)
+                return Task.FromResult(AuthenticateResult.Fail("Invalid Token"));
+
+            // 3. Build claims and identity
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, "user123"),
+                new Claim(ClaimTypes.Name, "John Doe")
+            };
+
+            var identity = new ClaimsIdentity(claims, SchemeName);
+            var principal = new ClaimsPrincipal(identity);
+            var ticket = new AuthenticationTicket(principal, SchemeName);
+
+            return Task.FromResult(AuthenticateResult.Success(ticket));
+        }
+    }
+}
+
+//////////////////////
+using System;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace SimpleTokenApp;
+
+public class AuthManager
+{
+    private readonly List<User> _users = new();
+    private readonly SHA256 _sha256 = SHA256.Create();
+    private readonly TokenManager _tokenManager = new();
+
+    public bool Register(string userName, string password)
+    {
+        if (!_users.Any(x => x.Username == userName))
+        {
+            _users.Add(new User {
+                Username = userName,
+                Password = GetPasswordHash(password),
+            });
+            return true;
+        }
+        return false;
+    }
+
+    public bool Login(string userName, string password, out string token)
+    {
+        token = string.Empty;
+
+        var user = _users.FirstOrDefault(x => x.Username == userName);
+        if (user?.Password == GetPasswordHash(password))
+        {
+            token = _tokenManager.GenerateToken(user);
+            return true;
+        }
+        return false;
+    }
+
+    public string GetPasswordHash(string password)
+    {
+        return Convert.ToBase64String(
+            _sha256.ComputeHash(
+                Encoding.UTF8.GetBytes(password)
+            )
+        );
+    }
+}
+public class SecurityManager
+{
+    private readonly TokenManager _tokenManager;
+
+    public SecurityManager(TokenManager tokenManager)
+    {
+        _tokenManager = tokenManager;
+    }
+
+    public bool ValidateToken(string token)
+    {
+        if (!_tokenManager.ParseToken(token, out var user))
+            return false;
+        
+        return true;
+    }
+}
+public class TokenManager
+{
+    public string GenerateToken(User user)
+    {
+        var array = Encoding.UTF8.GetBytes(
+            $"MYTOKEN:{user.Username}:{DateTime.UtcNow}"
+        );
+        return Convert.ToBase64String(array);
+    }
+
+    public bool ParseToken(string token, out User user)
+    {
+        user = new();
+         
+        var bytes = Convert.FromBase64String(token);
+        var tokenString = Encoding.UTF8.GetString(bytes);
+        var data = tokenString.Split(':');
+        if (data.Length != 3 && data[0] != "MYTOKEN") return false;
+
+        user.Username = data[1];
+        return true;
+    }
+}
